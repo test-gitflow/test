@@ -10,3 +10,4 @@
 1. 커밋들이 브랜치에 종속된 채 붙는 게 아니라 커밋들이 일렬로 주르륵 추가된다. <<프로젝트 규모가 커지면 커밋이 너무 많이 쌓인다?
 2. pull request 날렸을 당시 template 작성한 게 의미가 없어진다 << 3번에서 확인
 3. 그러나 issur template 사용하면 해결!
+4. sddsdsdsdsdsdsdsdsds
