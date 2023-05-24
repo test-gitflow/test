@@ -1,1 +1,0 @@
-const squash = "3";
