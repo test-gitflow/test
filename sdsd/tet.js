@@ -1,3 +1,3 @@
-const aaj = "434";
-const tes = "ㄴㄴㄴㄴdml";
-const test = "zz";
+const aa = ssss;
+const es = "ㄴㄴㄴㄴdml";
+const t = "zz";
