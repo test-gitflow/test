@@ -52,5 +52,9 @@ jobs:
         run: yarn install
       - name: where is package.json?
         run: ls
+      - name: where is package.json? cd test-app
+        run: cd test-app
+      - name: where is package.json? ls
+        run: ls
       - name: test...
         run: yarn test
