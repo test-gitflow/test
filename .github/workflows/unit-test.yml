@@ -30,7 +30,7 @@ jobs:
           node-version: 16.17.0
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
       ##1. actions/cache : 파일들을 github 캐시에 올려 >> $GITHUB_OUTPUT놓고 사용한다. 설정한 키에 해당하는 데이터가 캐시에 존재하면 해당 데이터들을 내려받는다.
       ##존재하지 않으면, 파일들을 캐시에 올려 놓는다.
       ##1-1. cache actions에는 두 가지 옵션을 필수적으로 설정해줘야 한다.
