@@ -17,6 +17,8 @@ jobs:
     ##runs-on : 작업환경 설정
     runs-on: ubuntu-latest
     steps:
+      - name: check dir 1
+        run: ls
       - name: checkout source code
         ##1. checkout : repository에서 특정 브랜치로 전환하는 작업을 의미.
         ##1-1. 하지만 checkout을 하기 전에 코드를 내려받아야 브랜치를 전환할 수 있다.env:
@@ -24,6 +26,8 @@ jobs:
         ##2. actions : 반복되는 작업 단계를 재사용할 수 있도록 구성된 컴포넌트이다.
         ##2-1. git hub가 공유하는 액션을 사용하려면 actions/{저장소@참조자} 로 명시해서 사용.
         uses: actions/checkout@v3
+      - name: check dir 2
+        run: ls
       - name: set node
         uses: actions/setup-node@v3
         with:
@@ -46,7 +50,7 @@ jobs:
       - name: Install Dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
-      - name: 
+      - name:
         run: cd test-app
       - name: test...
         run: yarn test
