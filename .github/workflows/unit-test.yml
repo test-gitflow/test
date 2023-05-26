@@ -46,12 +46,11 @@ jobs:
       - name: Install Dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
+      - name: check dir
+        run: ls
+      - name: go to parent
+        run: cd ..
       - name: check parent dir
-        run: |
-              ls
-              cd ..
-              ls
-              cd test-app
-
+        run: ls
       - name: test...
         run: yarn test
