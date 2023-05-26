@@ -2,19 +2,17 @@
 name: test-before-build
 ##동작 트리거 설정
 on:
-  push:
-    branches: -develop
   pull_request:
-    branches: -develop
+    branches: ["develop"]
 ##jobs는 여러 steps들로 구성되어 있다.
 ##
 jobs:
   Run_test:
     ##matrix strategy : 매트릭스 전략. 변수를 배열 안에 지정해 놓고
     ##변수들 조합의 경우의 수에 따라 작업 생성, 실행한다.
-    strategy:
-      matrix:
-        version: [14, 16.17.0]
+    # strategy:
+    #   matrix:
+    #     version: [14, 16.17.0]
     name: set enviroment
     ##runs-on : 작업환경 설정
     runs-on: ubuntu-latest
@@ -29,7 +27,7 @@ jobs:
       - name: set node
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.version }}
+          node-version: 16.17.0
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn cache dir)"
