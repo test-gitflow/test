@@ -4,6 +4,8 @@ name: test-before-build
 on:
   push:
     branches: -develop
+  pull_request:
+    branches: -develop
 ##jobs는 여러 steps들로 구성되어 있다.
 ##
 jobs:
