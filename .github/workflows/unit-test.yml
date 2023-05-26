@@ -17,8 +17,6 @@ jobs:
     ##runs-on : 작업환경 설정
     runs-on: ubuntu-latest
     steps:
-      - name: check dir 1
-        run: ls
       - name: checkout source code
         ##1. checkout : repository에서 특정 브랜치로 전환하는 작업을 의미.
         ##1-1. 하지만 checkout을 하기 전에 코드를 내려받아야 브랜치를 전환할 수 있다.env:
@@ -52,5 +50,7 @@ jobs:
       - name: Install Dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
+      - name: where is package.json?
+        run: ls
       - name: test...
         run: yarn test
