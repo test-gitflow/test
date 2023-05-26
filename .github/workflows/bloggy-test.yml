@@ -43,5 +43,7 @@ jobs:
         # if: steps.yarn-cache.outputs.cache-hit != 'true' 
         #yarn-cache 에러 해결까지 보류
         run: yarn install
+      - name: check dir
+        run: ls
       - name: test...
         run: yarn test
