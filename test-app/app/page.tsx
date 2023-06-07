@@ -19,7 +19,7 @@ export default function Home() {
       setTestData(nameData.data.name);
       setCheckTest(true);
     } catch (err) {
-      setTestData("서버 연동 실패")
+      setTestData("서버 연동 실패");
       setCheckTest(false);
     }
   };
@@ -42,9 +42,13 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-3xl font-bold">bloggy server test</h1>
-      <div className='flex items-center'>
-      <p className="text-xl font-semibold">서버 연동 테스트 : {testData}</p>
-      {checkTest ? <AiOutlineCheckCircle className="text-green-700"/> : <AiOutlineCloseCircle className="text-red-700"/>}
+      <div className="flex items-center">
+        <p className="text-xl font-semibold">서버 연동 테스트 : {testData}</p>
+        {checkTest ? (
+          <AiOutlineCheckCircle className="text-green-700" />
+        ) : (
+          <AiOutlineCloseCircle className="text-red-700" />
+        )}
       </div>
       <p className="text-lg">진입 시간 : {date}</p>
     </main>
