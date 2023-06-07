@@ -1,9 +1,28 @@
 "use client";
+import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { AiOutlineCloseCircle, AiOutlineCheckCircle } from "react-icons/ai";
+
+type getTestType = {
+  name: "string";
+};
 
 export default function Home() {
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState<any>("계산 중..");
+  const [testData, setTestData] = useState<any>("확인 중");
+  const [checkTest, setCheckTest] = useState(false);
+
+  const getTest = async () => {
+    try {
+      const nameData = await axios.get("/test");
+      setTestData(nameData.data.name);
+      setCheckTest(true);
+    } catch (err) {
+      setTestData("서버 연동 실패")
+      setCheckTest(false);
+    }
+  };
 
   const getKTime = () => {
     const curr = new Date();
@@ -17,12 +36,17 @@ export default function Home() {
   useEffect(() => {
     const nowDate = getKTime();
     setDate(`${nowDate}`);
-  }, [date]);
+    getTest();
+  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>bloggy server test</h1>
-      <p>{date}</p>
+      <h1 className="text-3xl font-bold">bloggy server test</h1>
+      <div className='flex items-center'>
+      <p className="text-xl font-semibold">서버 연동 테스트 : {testData}</p>
+      {checkTest ? <AiOutlineCheckCircle className="text-green-700"/> : <AiOutlineCloseCircle className="text-red-700"/>}
+      </div>
+      <p className="text-lg">진입 시간 : {date}</p>
     </main>
   );
 }
