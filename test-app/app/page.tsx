@@ -10,7 +10,7 @@ type getTestType = {
 
 export default function Home() {
   const [date, setDate] = useState<any>("계산 중..");
-  const [testData, setTestData] = useState<any>("확인 중..");
+  const [testData, setTestData] = useState<any>("확인 중");
   const [checkTest, setCheckTest] = useState(false);
 
   const getTest = async () => {
