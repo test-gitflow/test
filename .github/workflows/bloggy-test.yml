@@ -1,5 +1,5 @@
 ##workflow의 이름 지정
-name: test-before-build
+name: Bloggy-Test
 ##동작 트리거 설정
 on:
   pull_request:
@@ -9,7 +9,6 @@ on:
 ##jobs는 여러 steps들로 구성되어 있다.
 jobs:
   Run-test:
-    name: run unit-test
     ##runs-on : 작업환경 설정
     runs-on: ubuntu-latest
     defaults:
