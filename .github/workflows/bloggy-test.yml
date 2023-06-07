@@ -4,6 +4,8 @@ name: Bloggy-Test
 on:
   pull_request:
     branches: ["develop"]
+  push:
+    branches: ["develop"]
 ##jobs는 여러 steps들로 구성되어 있다.
 jobs:
   Run-test:
