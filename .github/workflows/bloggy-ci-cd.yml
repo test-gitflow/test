@@ -43,7 +43,6 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           key: ${{ secrets.EC2_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script_stop: true
           #최초 이미지 빌드 및 컨테이너 생성 시에 대한 에러 처리를 위해 || echo ".." 추가
           script: |
            docker stop ${{ env.Container }} || true
