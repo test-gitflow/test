@@ -45,5 +45,12 @@ jobs:
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         # yarn cache 문제 발생 원인 확인까지 주석처리
         run: yarn install --legacy-peer-deps
+      #cpu코어 수를 감지한 후 계산후 구동 시 적용하여 최적화
+      #https://jestjs.io/docs/troubleshooting
+      - name: Get number of CPU cores
+        id: cpu-cores
+        uses: SimenB/github-actions-cpu-cores@v1
+      - name: run tests
+        run: yarn jest --max-workers ${{ steps.cpu-cores.outputs.count }}
       - name: test...
         run: yarn test
