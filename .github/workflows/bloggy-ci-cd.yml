@@ -29,10 +29,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name:
-          Set up Docker Buildx
-          #다른 종류의 플랫폼에도 대응하기 위한 빌드. dockerhub push 후 확인요망
-        uses: docker/setup-buildx-action@v2
       - name: Docker Build and push
         uses: docker/build-push-action@v4
         with:
