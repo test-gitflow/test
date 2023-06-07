@@ -40,7 +40,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install Dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        # if: steps.yarn-cache.outputs.cache-hit != 'true'
+        # yarn cache 문제 발생 원인 확인까지 주석처리
         run: yarn install --legacy-peer-deps
       - name: test...
         run: yarn test
