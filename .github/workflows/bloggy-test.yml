@@ -4,8 +4,6 @@ name: Bloggy-Test
 on:
   pull_request:
     branches: ["develop"]
-  push:
-    branches: ["develop"]
 ##jobs는 여러 steps들로 구성되어 있다.
 jobs:
   Run-test:
@@ -43,6 +41,6 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install Dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install
+        run: yarn install --legacy-peer-deps
       - name: test...
         run: yarn test
