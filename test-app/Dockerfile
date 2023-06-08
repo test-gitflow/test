@@ -1,7 +1,5 @@
 FROM node:16.17.0-alpine
 #FROM을 통해 base image를 만든다. node는 이미지 지원. 뒤의 숫자는 버전. alpine은 작은 단위의 리눅스 명시 
-ARG NEXT_PUBLIC_API_KEY
-ENV NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY
 WORKDIR /app
 #WORKDIR은 cd를 의미. /app 디렉토리로 이미지를 복사해올 것을 지정
 
