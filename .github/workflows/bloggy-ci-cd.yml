@@ -36,6 +36,8 @@ jobs:
           context: test-app
           push: true
           tags: ${{ env.Image }}
+          build-args: |
+           NEXT_PUBLIC_API_KEY=${{ secrets.NEXT_PUBLIC_API_KEY }}
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
@@ -43,6 +45,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           key: ${{ secrets.EC2_KEY }}
           port: ${{ secrets.SSH_PORT }}
+          
           #최초 이미지 빌드 및 컨테이너 생성 시에 대한 에러 처리를 위해 if~else 조건문 추가
           script: |
             docker stop ${{ env.Container }}
