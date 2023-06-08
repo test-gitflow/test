@@ -1,6 +1,5 @@
 "use client";
 import axios from "axios";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AiOutlineCloseCircle, AiOutlineCheckCircle } from "react-icons/ai";
 
@@ -15,7 +14,7 @@ export default function Home() {
 
   const getTest = async () => {
     try {
-      const nameData = await axios.get("/test");
+      const nameData = await axios.get("/secret/test");
       setTestData(nameData.data.name);
       setCheckTest(true);
     } catch (err) {

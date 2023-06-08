@@ -5,8 +5,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/:path*",
-        destination: "http://15.164.205.114:9092/:path*",
+        source: "/secret/:path*",
+        destination: `${process.env.NEXT_PUBLIC_API_KEY}/:path*`,
       },
     ];
   },
