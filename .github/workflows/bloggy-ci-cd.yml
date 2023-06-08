@@ -24,9 +24,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      - run: touch .env
-      - run: echo "${{env.APPLICATION}}" > .env
-      - uses: actions/upload-artifact@v2
+      - run: touch .env #env 파일 생성
+      - run: echo "${{env.APPLICATION}}" > .env #env파일 내용 채움
+      - uses: actions/upload-artifact@v2 #위에서 생성한 .env파일을 디렉토리에 집어넣기
         with:
           name: .env
           path: ./test-app/.env
