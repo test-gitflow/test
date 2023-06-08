@@ -64,12 +64,10 @@ jobs:
             fi
 
             echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-             if docker pull "${{ env.Image }}"; then
-               docker run -d --name "${{ env.Container }}" -p 80:3000 "${{ env.Image }}"
-               echo "Image pulled and container started successfully"
-             else
-               echo "Error: Failed to pull the image"
-             fi
+            
+            if docker pull "${{ env.Image }}"; then
+              docker run -d --name "${{ env.Container }}" -p 80:3000 "${{ env.Image }}"
+              echo "Image pulled and container started successfully"
             else
-             echo "Error: Docker login failed"
+              echo "Error: Failed to pull the image"
             fi
