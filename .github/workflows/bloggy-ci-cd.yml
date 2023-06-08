@@ -45,9 +45,28 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           #최초 이미지 빌드 및 컨테이너 생성 시에 대한 에러 처리를 위해 || echo ".." 추가
           script: |
-           docker stop ${{ env.Container }} || true
-           docker rm ${{ env.Container }} || true
-           docker rmi ${{ env.Image }} || true
-           docker pull ${{ env.Image }} && docker run -d --name ${{ env.Container }} -p 80:3000 ${{ env.Image }}
-
-           
+           if docker stop "${{ env.Container }}" 2>/dev/null; then
+           echo "Container stopped successfully or not found"
+            else
+             
+           echo "Error: Container does not exist or could not be stopped"
+            fi
+          
+            if docker rm "${{ env.Container }}" 2>/dev/null; then
+              echo "Container removed successfully or not found"
+            else
+              echo "Error: Container does not exist or could not be removed"
+            fi
+          
+            if docker rmi "${{ env.Image }}" 2>/dev/null; then
+              echo "Image removed successfully or not found"
+            else
+              echo "Error: Image does not exist or could not be removed"
+            fi
+          
+            if docker pull "${{ env.Image }}"; then
+              docker run -d --name "${{ env.Container }}" -p 80:3000 "${{ env.Image }}"
+              echo "Image pulled and container started successfully"
+            else
+              echo "Error: Failed to pull the image"
+            fi
