@@ -43,7 +43,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           key: ${{ secrets.EC2_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          #최초 이미지 빌드 및 컨테이너 생성 시에 대한 에러 처리를 위해 || echo ".." 추가
+          #최초 이미지 빌드 및 컨테이너 생성 시에 대한 에러 처리를 위해 if~else 조건문 추가
           script: |
            if docker stop "${{ env.Container }}" 2>/dev/null; then
            echo "Container stopped successfully or not found"
@@ -64,7 +64,7 @@ jobs:
               echo "Error: Image does not exist or could not be removed"
             fi
           
-            if docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"; then
+            echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
               if docker pull "${{ env.Image }}"; then
                 docker run -d --name "${{ env.Container }}" -p 80:3000 "${{ env.Image }}"
                 echo "Image pulled and container started successfully"
