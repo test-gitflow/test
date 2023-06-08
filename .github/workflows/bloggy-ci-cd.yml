@@ -64,9 +64,13 @@ jobs:
               echo "Error: Image does not exist or could not be removed"
             fi
           
-            if docker pull "${{ env.Image }}"; then
-              docker run -d --name "${{ env.Container }}" -p 80:3000 "${{ env.Image }}"
-              echo "Image pulled and container started successfully"
+            if docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"; then
+              if docker pull "${{ env.Image }}"; then
+                docker run -d --name "${{ env.Container }}" -p 80:3000 "${{ env.Image }}"
+                echo "Image pulled and container started successfully"
+              else
+                echo "Error: Failed to pull the image"
+              fi
             else
-              echo "Error: Failed to pull the image"
+              echo "Error: Docker login failed"
             fi
